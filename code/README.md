@@ -14,6 +14,7 @@ Requirements: Python 3 (tested with 3.13), `networkx`, `numpy`; for the exhausti
 2. `exh_disc2.py <geng> <n> <out.tsv>` — Theorem 4.1 (n = 10 takes 1–2 h on one core). Outputs in `../data/discoides_{8,9,10}.tsv`.
 3. `kbehav.py <discoides_n.tsv>` — Theorem 4.2 (K-nullity by iterating K and taking 0-cores).
 4. `c_n11/` — Theorem 4.3: `k1proc.c` (OUTPROC module for geng), `compilar.sh`, `correr_c.sh` (2000 resumable parts; ~5 core-hours), `analisis_final.py`. Result: `../data/contraejemplos_n11.tsv` (the 81 graphs).
+4b. `c_n11/run_classification.sh` — Theorem 4.4: K-behavior of the other 1-dismantlable graphs on 11 vertices, with `exhaustive_disks_C/kdisk.c` (about 10 minutes for the first stage, plus the larger limits). Results: `../results/classification_n11/`.
 5. `certificado_K2/` — Theorem 4.3, the graph G_* = `JEhfrz{~~~?`: `retract_oct.py` (retraction onto an octahedron as a constraint-satisfaction problem), `k2_oct2.py` (search for the O_16 retract of K^2(G_*)), `verificar_k2.py` (independent verification). Certificate: `../data/k2_retraccion_JEhfrz.json`.
 6. `susp11.py <geng> <out.tsv>` — Proposition 5.2 (the 37 suspensions on 11 vertices). Output `../data/susp11.tsv` (~7 min).
 7. `family_Gl/` — Section 6, the family G_l (standalone folder):

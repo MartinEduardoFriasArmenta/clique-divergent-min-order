@@ -34,7 +34,7 @@ typedef uint64_t u64;
 
 typedef struct { int n, W; u64 *a; } Graph;       /* adjacency rows (no loops), W = words per row */
 
-static int IT = 5, LIMIT = 2000, EXACTMAX = 96, GTRIES = 8, TIMING = 0, SUMMARY = 0, PRINTOPEN = 0;
+static int DUMP = 0; static int IT = 5, LIMIT = 2000, EXACTMAX = 96, GTRIES = 8, TIMING = 0, SUMMARY = 0, PRINTOPEN = 0;
 static u64 rng_state = 88172645463325252ULL;
 static u64 rnd(void) { rng_state ^= rng_state << 13; rng_state ^= rng_state >> 7; rng_state ^= rng_state << 17; return rng_state; }
 
@@ -60,6 +60,17 @@ static int parse_g6(const char *s, Graph *g) {
         k++;
     }
     return n;
+}
+
+
+static void write_g6(const Graph *g, FILE *f) {
+    int n = g->n;
+    if (n < 63) fputc(n + 63, f); else { fputc(126, f); fputc(((n >> 12) & 63) + 63, f); fputc(((n >> 6) & 63) + 63, f); fputc((n & 63) + 63, f); }
+    int k = 0, x = 0;
+    for (int j = 1; j < n; j++) for (int i = 0; i < j; i++) {
+        x = (x << 1) | has(row(g, j), i); if (++k == 6) { fputc(x + 63, f); k = 0; x = 0; }
+    }
+    if (k) { x <<= (6 - k); fputc(x + 63, f); }
 }
 
 /* ---------- 0-core: delete dominated vertices (queue; only neighbors of a deleted vertex need rechecking) ---------- */
@@ -260,6 +271,7 @@ int main(int argc, char **argv) {
         else if (!strcmp(argv[i], "-t")) TIMING = 1;
         else if (!strcmp(argv[i], "-S")) SUMMARY = 1;
         else if (!strcmp(argv[i], "-O")) PRINTOPEN = 1;
+        else if (!strcmp(argv[i], "-D")) DUMP = 1;
         else { fprintf(stderr, "unknown option %s\n", argv[i]); return 1; }
     }
     char line[1 << 16];
@@ -281,7 +293,7 @@ int main(int argc, char **argv) {
         if (H.n == 1) first0 = 0;
         for (int i = 1; i <= IT && first0 < 0; i++) {
             Graph K = clique_graph(&H, LIMIT);
-            if (K.n < 0) { o += sprintf(out + o, "\t>%d", LIMIT); big = 1; break; }
+            if (K.n < 0) { o += sprintf(out + o, "\t>%d", LIMIT); big = 1; if (DUMP) { fprintf(stderr, "CORE%d\t%s\t%d\t", i - 1, line, H.n); write_g6(&H, stderr); fputc(10, stderr); } break; }
             if (K.n > maxK) maxK = K.n;
             Graph H2 = core0(&K);
             st = status1(&H2);

@@ -17,6 +17,7 @@ most 18 vertices.
 |---|---|
 | `code/` | All programs (Python 3 + C). See `code/README.md` for a description of each one and the theorem it supports. |
 | `data/` | Outputs of the enumerations: the 81 graphs on 11 vertices (`contraejemplos_n11.tsv`), the 37 suspensions, the 1-dismantlable graphs on 8–10 vertices, the preliminary disk experiment, the retraction certificate for `K^2(G_*)`, the certificates for the family `G_l`. |
+| `results/classification_n11/` | K-behavior of all the 1-dismantlable graphs on 11 vertices (Theorem 4.4): stage summaries and the nine undecided graphs. |
 | `results/exhaustive_disks_n18/` | Summary of the exhaustive run over all Whitney disks with n ≤ 18 vertices (Section 7): per-n tables in TSV and LaTeX, the 39 hard disks, raw part summaries. |
 
 ## Quick reproduction
@@ -43,6 +44,7 @@ two cores (Theorem 7.2, `code/exhaustive_disks_C/`, up to n = 18).
 | Thm 3.1–3.3, Prop 5.1 | `propiedades_A.py` | `data/colapsos_*.txt` |
 | Thm 4.1, 4.2 | `exh_disc2.py`, `kbehav.py` | `data/discoides_{8,9,10}.tsv` |
 | Thm 4.3 | `c_n11/` (`k1proc.c` + geng), `analisis_final.py` | `data/contraejemplos_n11.tsv` |
+| Thm 4.4 | `c_n11/run_classification.sh` (uses `exhaustive_disks_C/kdisk.c`) | `results/classification_n11/` |
 | Thm 4.3, graph `G_*` | `certificado_K2/` | `data/k2_retraccion_JEhfrz.json` |
 | Prop 5.2 | `susp11.py` | `data/susp11.tsv` |
 | Thm 6.3 | `family_Gl/family_Gl.py` | `data/family_Gl_certificates.json` |
