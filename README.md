@@ -52,4 +52,8 @@ two cores (Theorem 7.2, `code/exhaustive_disks_C/`, up to n = 18).
 
 ## Citation
 
-See `CITATION.cff`. Code is released under the MIT License; data and certificates under CC BY 4.0.
+This repository is archived at Zenodo: [doi:10.5281/zenodo.24201088](https://doi.org/10.5281/zenodo.24201088) (all versions). To cite it:
+
+> M.E. Frías-Armenta, J.F. Espinoza-Fierro, H.A. Hernández Hernández, *Programs, data and certificates for "A 1-dismantlable, collapsible, clique-divergent graph of minimum order"*, Zenodo, 2026, https://doi.org/10.5281/zenodo.24201088
+
+See also `CITATION.cff`. Code is released under the MIT License; data and certificates under CC BY 4.0.
