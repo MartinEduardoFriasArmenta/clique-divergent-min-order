@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.out
+*.toc
+*.lpg
+__pycache__/
+*.pyc
+code/exhaustive_disks_C/out/
+code/exhaustive_disks_C/out2/
+code/exhaustive_disks_C/gen_disks
+code/exhaustive_disks_C/gen_disks_ca
+code/exhaustive_disks_C/kdisk

@@ -75,7 +75,7 @@ for c in nx.enumerate_all_cliques(G): fvec[len(c)] = fvec.get(len(c), 0) + 1
 print('3. f-vector de Delta(G):', [fvec[k] for k in sorted(fvec)], ' colapsible:', seq is not None, '(%d colapsos elementales)' % (len(seq) if seq else 0))
 if seq:
     print('   primeros colapsos (cara libre -> cara maximal):', ', '.join('%s<%s' % (''.join(map(str, a)), ''.join(map(str, b))) for a, b in seq[:8]), '...')
-    open('colapsos_%s.txt' % g6.replace('~', 'T').replace('\\', 'B').replace('}', 'R').replace('_', 'U'), 'w').write('\n'.join('%s %s' % (' '.join(map(str, a)), ' '.join(map(str, b))) for a, b in seq) + '\n')
+    open('colapsos_%s.txt' % g6.replace('~', 'T').replace('\\', 'B').replace('}', 'R').replace('_', 'U').replace('?', 'Q').replace('{', 'L').replace('|', 'P').replace('^', 'C').replace('`', 'G'), 'w').write('\n'.join('%s %s' % (' '.join(map(str, a)), ' '.join(map(str, b))) for a, b in seq) + '\n')
 
 # 4. homología
 chi = sum((-1) ** (k - 1) * v for k, v in fvec.items())
